@@ -3,9 +3,6 @@ export const filterCondition = (
   filterValue: string | number,
   responseValue: string | number
 ) => {
-  console.log("Condition: ", condition);
-  console.log("filterValue: ", filterValue);
-  console.log("responseValue: ", responseValue);
   let conditionState = false;
   switch (condition) {
     case "equals":

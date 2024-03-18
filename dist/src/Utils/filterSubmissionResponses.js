@@ -7,15 +7,17 @@ const filterSubmissionResponses = (filter, responses) => {
         ? responses === null || responses === void 0 ? void 0 : responses.filter((response) => {
             var _a;
             let count = 0;
-            (_a = response === null || response === void 0 ? void 0 : response.questions) === null || _a === void 0 ? void 0 : _a.forEach((question) => {
-                filter === null || filter === void 0 ? void 0 : filter.forEach((filterVal) => {
+            (_a = response === null || response === void 0 ? void 0 : response.questions) === null || _a === void 0 ? void 0 : _a.some((question) => {
+                filter === null || filter === void 0 ? void 0 : filter.some((filterVal) => {
                     if ((filterVal === null || filterVal === void 0 ? void 0 : filterVal.id) === (question === null || question === void 0 ? void 0 : question.id)) {
                         const condition = (0, filterCondition_1.filterCondition)(filterVal === null || filterVal === void 0 ? void 0 : filterVal.condition, filterVal === null || filterVal === void 0 ? void 0 : filterVal.value, question === null || question === void 0 ? void 0 : question.value);
                         if (condition) {
                             count += 1;
                         }
+                        return true;
                     }
                 });
+                return count === (filter === null || filter === void 0 ? void 0 : filter.length);
             });
             return count === (filter === null || filter === void 0 ? void 0 : filter.length);
         })

@@ -15,9 +15,9 @@ const filterSubmissionResponses_1 = require("../Utils/filterSubmissionResponses"
 const updateResponseObject_1 = require("../Utils/updateResponseObject");
 const getSubmissionData = (req) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { formId } = req.params;
+        const { formId } = req === null || req === void 0 ? void 0 : req.params;
         const { filters } = (req === null || req === void 0 ? void 0 : req.body) || {};
-        const submissionDataFromFillOut = yield submissionDataInstance_1.submissionDataInstance.get(`/v1/api/forms/${formId}/submissions`, { params: req.query });
+        const submissionDataFromFillOut = yield submissionDataInstance_1.submissionDataInstance.get(`/v1/api/forms/${formId}/submissions`, { params: req === null || req === void 0 ? void 0 : req.query });
         const { data } = submissionDataFromFillOut || {};
         const filteredSubmissions = (0, filterSubmissionResponses_1.filterSubmissionResponses)(filters, data === null || data === void 0 ? void 0 : data.responses);
         const updatedResponse = (0, updateResponseObject_1.updateResponseObject)(data, filteredSubmissions);

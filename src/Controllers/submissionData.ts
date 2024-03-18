@@ -7,9 +7,9 @@ export const submissionData = async (
   next: NextFunction
 ) => {
   try {
-    const submissionData = await getSubmissionData(req);
+    const submissionData: Promise<void> = await getSubmissionData(req);
     res.status(200).json(submissionData);
-  } catch (error) {
+  } catch (error: unknown) {
     next(error);
   }
 };

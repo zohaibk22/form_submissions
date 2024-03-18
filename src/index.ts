@@ -1,6 +1,8 @@
 import cors from "cors";
 import express, { Express, Request, Response } from "express";
 import helmet from "helmet";
+import swaggerUI from "swagger-ui-express";
+import { swaggerSpec } from "../swagger";
 import { errorHandler } from "./Middleware/error";
 import { routes } from "./Routes";
 
@@ -13,7 +15,12 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/fillOut", routes);
+app.get("/", (_req, res) => {
+  res.send("<h1>Welcome to the Fillout Filter Submissions API</h1>");
+});
+
+app.use("/fillout", routes);
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 // Error Handler
 

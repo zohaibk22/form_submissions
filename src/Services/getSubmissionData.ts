@@ -1,31 +1,30 @@
 import { Request } from "express";
 import { submissionDataInstance } from "../API/submissionDataInstance";
 import { filterSubmissionResponses } from "../Utils/filterSubmissionResponses";
+import { IFilterClauseType, TFormId } from "../Utils/interfaces";
 import { updateResponseObject } from "../Utils/updateResponseObject";
-type FilterClauseType = {
-  id: string;
-  condition: "equals" | "does_not_equal" | "greater_than" | "less_than";
-  value: number | string;
-};
 
 export const getSubmissionData = async (req: Request) => {
   try {
-    const { formId } = req.params;
-    const { filters }: { filters: FilterClauseType } = req?.body || {};
+    const { formId } = req?.params;
+    const { filters }: { filters: IFilterClauseType } = req?.body || {};
     const submissionDataFromFillOut: any = await submissionDataInstance.get(
       `/v1/api/forms/${formId}/submissions`,
-      { params: req.query }
+      { params: req?.query }
     );
-    const { data } = submissionDataFromFillOut || {};
-    const filteredSubmissions = filterSubmissionResponses(
+    const { data }: { data: any } = submissionDataFromFillOut || {};
+    const filteredSubmissions: any = filterSubmissionResponses(
       filters,
       data?.responses
     );
 
-    const updatedResponse = updateResponseObject(data, filteredSubmissions);
+    const updatedResponse: any = updateResponseObject(
+      data,
+      filteredSubmissions
+    );
 
     return updatedResponse;
-  } catch (error: any) {
+  } catch (error: unknown) {
     throw error;
   }
 };

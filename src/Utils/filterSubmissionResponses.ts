@@ -5,8 +5,8 @@ export const filterSubmissionResponses = (filter: any, responses: any) => {
     filter && filter.length
       ? responses?.filter((response: any) => {
           let count: number = 0;
-          response?.questions?.forEach((question: any) => {
-            filter?.forEach((filterVal: any) => {
+          response?.questions?.some((question: any) => {
+            filter?.some((filterVal: any) => {
               if (filterVal?.id === question?.id) {
                 const condition = filterCondition(
                   filterVal?.condition,
@@ -17,8 +17,10 @@ export const filterSubmissionResponses = (filter: any, responses: any) => {
                 if (condition) {
                   count += 1;
                 }
+                return true;
               }
             });
+            return count === filter?.length;
           });
           return count === filter?.length;
         })
