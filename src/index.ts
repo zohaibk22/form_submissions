@@ -16,7 +16,9 @@ app.use(express.json());
 
 // Routes
 app.get("/", (_req, res) => {
-  res.send("<h1>Welcome to the Fillout Filter Submissions API</h1>");
+  res.send(
+    "<h1 style='margin: 50;'>Welcome to the Fillout Filter Form Submissions API</h1>"
+  );
 });
 
 app.use("/fillout", routes);

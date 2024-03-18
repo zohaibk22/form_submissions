@@ -19,7 +19,7 @@ exports.app.use((0, cors_1.default)());
 exports.app.use(express_1.default.json());
 // Routes
 exports.app.get("/", (_req, res) => {
-    res.send("<h1>Welcome to the Fillout Filter Submissions API</h1>");
+    res.send("<h1>Welcome to the Fillout Filter Form Submissions API</h1>");
 });
 exports.app.use("/fillout", Routes_1.routes);
 exports.app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_1.swaggerSpec));
