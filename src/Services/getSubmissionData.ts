@@ -10,7 +10,9 @@ import {
 } from "../Utils/interfaces";
 import { updateResponseObject } from "../Utils/updateResponseObject";
 
-export const getSubmissionData = async (req: Request) => {
+export const getSubmissionData = async (
+  req: Request
+): Promise<IFormResponse[]> => {
   try {
     const { formId } = req?.params;
     const { filters }: { filters: IFilterClauseType[] } = req?.body || {};
