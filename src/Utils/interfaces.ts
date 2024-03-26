@@ -5,11 +5,11 @@ export interface IQuestion {
   value: string | number;
 }
 
-export interface IResponses {
+export interface IFormResponse {
   submissionId: string;
   submissionTime: string;
   lastUpdatedAt: string;
-  questions: [];
+  questions: IQuestion[];
   calculations: [];
   urlParameters: [];
   quiz: {};
@@ -23,3 +23,7 @@ export interface IFilterClauseType {
 }
 
 export type TFormId = string;
+
+export interface IResponse {
+  responses: IFormResponse[];
+}

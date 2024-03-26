@@ -1,12 +1,21 @@
 import { filterCondition } from "./filterCondition";
+import {
+  IFilterClauseType,
+  IFormResponse,
+  IQuestion,
+  IResponse,
+} from "./interfaces";
 
-export const filterSubmissionResponses = (filter: any, responses: any) => {
+export const filterSubmissionResponses = (
+  filter: IFilterClauseType[],
+  responses: IFormResponse[]
+) => {
   const filteredResponses =
     filter && filter.length
-      ? responses?.filter((response: any) => {
+      ? responses?.filter((response: IFormResponse) => {
           let count: number = 0;
-          response?.questions?.some((question: any) => {
-            filter?.some((filterVal: any) => {
+          response?.questions?.some((question: IQuestion) => {
+            filter?.some((filterVal: IFilterClauseType) => {
               if (filterVal?.id === question?.id) {
                 const condition = filterCondition(
                   filterVal?.condition,

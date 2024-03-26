@@ -1,4 +1,9 @@
-export const updateResponseObject = (responseObj: any, filteredData: any) => {
+import { IFormResponse } from "./interfaces";
+
+export const updateResponseObject = (
+  responseObj: IFormResponse[],
+  filteredData: IFormResponse[]
+) => {
   return {
     ...responseObj,
     responses: filteredData,
